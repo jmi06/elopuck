@@ -3,7 +3,7 @@ import json
 import os
 from datetime import datetime, timezone
 from dotenv import load_dotenv
-import tweepy
+# import tweepy
 import time
 load_dotenv()
 

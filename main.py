@@ -22,7 +22,7 @@ now = datetime.now()
 hour = now.hour  # Get the current hour in 24-hour format
 
 
-api_url = 'https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20241112'
+api_url = 'https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard'
 
 with open('games.json') as file:
     games = json.load(file)
@@ -203,6 +203,8 @@ def setup_teams():
         "Washington Capitals": {"league": "Eastern", "division": "Metropolitan"},
 
         # Central Division (Western Conference)
+        "Utah Hockey Club": {"league": "Western", "division": "Central"},
+
         "Utah Mammoth": {"league": "Western", "division": "Central"},
         "Chicago Blackhawks": {"league": "Western", "division": "Central"},
         "Colorado Avalanche": {"league": "Western", "division": "Central"},
@@ -403,12 +405,12 @@ def calc_order():
     eastern_teams = {k: v for k, v in teams.items() if v["league"] == "Eastern"}
     western_teams = {k: v for k, v in teams.items() if v["league"] == "Western"}
 
-    easternAtlantic = {k: v for k, v in teams.items() if v["division"] == "Eastern Atlantic"}
-    easternMetro = {k: v for k, v in teams.items() if v["division"] == "Eastern Metropolitan"}
+    easternAtlantic = {k: v for k, v in teams.items() if v["league"] == "Eastern" and v["division"] == "Atlantic"}
+    easternMetro = {k: v for k, v in teams.items() if v["league"] == "Eastern" and v["division"] == "Metropolitan"}
 
 
-    westernCentral = {k: v for k, v in teams.items() if v["division"] == "Western Central"}
-    westernPacific = {k: v for k, v in teams.items() if v["division"] == "Western Pacific"}
+    westernCentral = {k: v for k, v in teams.items() if v["league"] == "Western" and v["division"] == "Central"}
+    westernPacific = {k: v for k, v in teams.items() if v["league"] == "Western" and v["division"] == "Pacific"}
 
     
     order['all'] = dict(sorted(teams.items(), key=lambda x: x[1]['elo'], reverse=True))
