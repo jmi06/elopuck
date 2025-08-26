@@ -600,7 +600,7 @@ def keepContinuing():
 
 
 
-while datetime.now().hour <= 13 or datetime.now().hour < 4:
+while datetime.now().hour >= 13 or datetime.now().hour < 4:
         keepContinuing()
 
 
