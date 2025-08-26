@@ -122,10 +122,10 @@ def create_post():
     facets = [
         {
             "index": {
-                "byteStart": posttext.find("https://eloball.pages.dev/"),
-                "byteEnd": posttext.find("https://eloball.pages.dev/") + len("https://eloball.pages.dev/")
+                "byteStart": posttext.find("https://elopuck.pages.dev/"),
+                "byteEnd": posttext.find("https://elopuck.pages.dev/") + len("https://elopuck.pages.dev/")
             },
-            "features": [{"$type": "app.bsky.richtext.facet#link", "uri": "https://eloball.pages.dev/"}]
+            "features": [{"$type": "app.bsky.richtext.facet#link", "uri": "https://elopuck.pages.dev/"}]
         },
         {
             "index": {
@@ -177,6 +177,7 @@ def create_post():
         },
     )
 
+    print('posted to bluesky')
     # twitter_post()
 
 

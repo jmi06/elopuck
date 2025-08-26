@@ -22,7 +22,7 @@ now = datetime.now()
 hour = now.hour  # Get the current hour in 24-hour format
 
 
-api_url = 'https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard'
+api_url = 'https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20241112'
 
 with open('games.json') as file:
     games = json.load(file)
@@ -203,7 +203,7 @@ def setup_teams():
         "Washington Capitals": {"league": "Eastern", "division": "Metropolitan"},
 
         # Central Division (Western Conference)
-        "Arizona Coyotes": {"league": "Western", "division": "Central"},
+        "Utah Mammoth": {"league": "Western", "division": "Central"},
         "Chicago Blackhawks": {"league": "Western", "division": "Central"},
         "Colorado Avalanche": {"league": "Western", "division": "Central"},
         "Dallas Stars": {"league": "Western", "division": "Central"},
