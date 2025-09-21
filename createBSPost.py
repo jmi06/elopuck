@@ -166,17 +166,22 @@ def create_post():
         }],
     }
 
-
-    resp = requests.post(
-        "https://bsky.social/xrpc/com.atproto.repo.createRecord",
-        headers={"Authorization": "Bearer " + session["accessJwt"]},
-        json={
-            "repo": session["did"],
-            "collection": "app.bsky.feed.post",
-            "record": post,
-        },
-    )
-
+    attempts = 0
+    try:
+        resp = requests.post(
+            "https://bsky.social/xrpc/com.atproto.repo.createRecord",
+            headers={"Authorization": "Bearer " + session["accessJwt"]},
+            json={
+                "repo": session["did"],
+                "collection": "app.bsky.feed.post",
+                "record": post,
+            },
+        )
+    except Exception as e:
+        print('bluesky is beefing',e)
+        attempts+=1
+        if attempts < 3:
+            create_post()
     print('posted to bluesky')
     # twitter_post()
 
@@ -227,9 +232,6 @@ def create_post():
 #          print('twitter is beefing with us rn')
 #          time.sleep(30)
 #          twitter_post()
-
-
-
 
 
 
